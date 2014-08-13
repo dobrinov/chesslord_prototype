@@ -1,1 +1,57 @@
-index.html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Lord of the chess</title>
+    <link href="css/default.css" media="all" rel="stylesheet">
+    <script src="js/jquery-2.1.1.min.js"></script>
+  </head>
+
+  <body>
+    <div class="field"></div>
+  </body>
+
+  <script>
+    $(document).ready(function(){
+      var rows = 16;
+      var cols = 16;
+
+      var $field = $('.field');
+      var field = new Array();
+
+      // Generate field array;
+      for(var i=0; i<rows; i++){
+        var row = new Array();
+        field.push(row);
+
+        for(var j=0; j<rows; j++){
+          var color;
+
+          if(i%2==0){
+            color = j%2==0 ? 'dark' : 'light';
+          } else {
+            color = j%2==0 ? 'light' : 'dark';
+          }
+
+          row.push({
+            'color': color
+          });
+        }
+      }
+
+      window.field = field;
+      console.log(field);
+
+      // Draw field;
+      for(var i=0; i<rows; i++){
+        for(var j=0; j<rows; j++){
+          var block = $(document.createElement('div'));
+          block.addClass('field__block field__block_' + field[i][j].color);
+          // block.html(i + ' -' + j);
+          $field.append(block);
+        }
+      }
+
+    });
+  </script>
+</html>
