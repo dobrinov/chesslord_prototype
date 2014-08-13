@@ -22,6 +22,7 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
+  font-size: 45px;
 }
 
 .board__block_light {
