@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <div class="field"></div>
+    <div class="board"></div>
   </body>
 
   <script>
@@ -16,13 +16,13 @@
       var rows = 16;
       var cols = 16;
 
-      var $field = $('.field');
-      var field = new Array();
+      var $board = $('.board');
+      var board = new Array();
 
-      // Generate field array;
+      // Generate board array;
       for(var i=0; i<rows; i++){
         var row = new Array();
-        field.push(row);
+        board.push(row);
 
         for(var j=0; j<rows; j++){
           var color;
@@ -39,16 +39,12 @@
         }
       }
 
-      window.field = field;
-      console.log(field);
-
       // Draw field;
       for(var i=0; i<rows; i++){
         for(var j=0; j<rows; j++){
           var block = $(document.createElement('div'));
-          block.addClass('field__block field__block_' + field[i][j].color);
-          // block.html(i + ' -' + j);
-          $field.append(block);
+          block.addClass('board__block board__block_' + board[i][j].color);
+          $board.append(block);
         }
       }
 
