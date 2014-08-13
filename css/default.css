@@ -9,9 +9,7 @@ body {
   margin: 0 auto;
   padding: 0;
   overflow: hidden;
-  border: 15px solid gray;
-
-  box-shadow: 0 0 5px rgba(0,0,0,0.5)
+  border: 4px solid #00917e;
 }
 
 .field__block {
@@ -23,19 +21,14 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-
-  box-shadow:
-    0 2px 8px rgba(0,0,0,0.5), /* Exterior Shadow */
-    inset 0 1px rgba(255,255,255,0.3), /* Top light Line */
-    inset 0 -5px 30px rgba(0,0,0,0.4); /* Dark Background */
 }
 
 .field__block_light {
-  background-color: white;
+  background-color: #00917e;
   color: black;
 }
 
 .field__block_dark {
-  background-color: #222;
+  background-color: #00ab88;
   color: white;
 }
