@@ -51,10 +51,15 @@
       // Draw field;
       for(var i=0; i<rows; i++){
         for(var j=0; j<rows; j++){
-          var block = $(document.createElement('div'));
-          block.addClass('board__block board__block_' + board[i][j].color);
-          block.html(pieces[Math.floor(Math.random()*pieces.length)]);
-          $board.append(block);
+          var $block = $(document.createElement('div'));
+          $block.addClass('board__block board__block_' + board[i][j].color);
+
+          var $piece = $(document.createElement('span'));
+          $piece.addClass('piece');
+          // $piece.html(pieces[Math.floor(Math.random()*pieces.length)]);
+
+          $block.append($piece);
+          $board.append($block);
         }
       }
 
