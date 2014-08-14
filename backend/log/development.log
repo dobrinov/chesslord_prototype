@@ -1,0 +1,554 @@
+
+
+Started GET "/" for 127.0.0.1 at 2014-08-14 18:08:55 +0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/deyan/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/railties-4.1.4/lib/rails/templates/rails/welcome/index.html.erb (7.7ms)
+Completed 200 OK in 50ms (Views: 26.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (9.6ms)[0m  select sqlite_version(*)
+  [1m[36m (1.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateGames (20140814152110)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "creator_id" integer) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140814152110"]]
+  [1m[35m (2.1ms)[0m  commit transaction
+Migrating to CreateUsers (20140814152408)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140814152408"]]
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to CreateUsersGames (20140814152709)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "users_games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "player_id" integer, "game_id" integer) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140814152709"]]
+  [1m[35m (1.7ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" DEFAULT VALUES
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "games" ("creator_id") VALUES (?)[0m  [["creator_id", 1]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateGamesUsers (20140814153615)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "games_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "player_id" integer, "game_id" integer) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140814153615"]]
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateGames (20140814152110)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "creator_id" integer) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140814152110"]]
+  [1m[35m (1.7ms)[0m  commit transaction
+Migrating to CreateUsers (20140814152408)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140814152408"]]
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to CreateGamesUsers (20140814153615)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "games_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "player_id" integer, "game_id" integer) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140814153615"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" DEFAULT VALUES
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "games" ("creator_id") VALUES (?)[0m  [["creator_id", 1]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36mGame Load (0.4ms)[0m  [1mSELECT "games".* FROM "games" INNER JOIN "games_users" ON "games"."id" = "games_users"."game_id" WHERE "games_users"."user_id" = ?[0m  [[nil, 1]]
+SQLite3::SQLException: no such column: games_users.user_id: SELECT "games".* FROM "games" INNER JOIN "games_users" ON "games"."id" = "games_users"."game_id" WHERE "games_users"."user_id" = ?
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"   ORDER BY "users"."id" DESC LIMIT 1[0m
+  [1m[35mGame Load (0.2ms)[0m  SELECT  "games".* FROM "games"   ORDER BY "games"."id" DESC LIMIT 1
+  [1m[36mGame Load (0.2ms)[0m  [1mSELECT "games".* FROM "games" INNER JOIN "games_users" ON "games"."id" = "games_users"."game_id" WHERE "games_users"."game_id" = ?[0m  [["game_id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "games_users" ON "users"."id" = "games_users"."user_id" WHERE "games_users"."player_id" = ?[0m  [["player_id", 1]]
+SQLite3::SQLException: no such column: games_users.user_id: SELECT "users".* FROM "users" INNER JOIN "games_users" ON "users"."id" = "games_users"."user_id" WHERE "games_users"."player_id" = ?
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "users" DEFAULT VALUES
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "games" ("creator_id") VALUES (?)[0m  [["creator_id", 2]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36mGame Load (0.2ms)[0m  [1mSELECT "games".* FROM "games" INNER JOIN "games_users" ON "games"."id" = "games_users"."game_id" WHERE "games_users"."game_id" = ?[0m  [["game_id", 2]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" INNER JOIN "games_users" ON "users"."id" = "games_users"."user_id" WHERE "games_users"."player_id" = ?  [["player_id", 2]]
+SQLite3::SQLException: no such column: games_users.user_id: SELECT "users".* FROM "users" INNER JOIN "games_users" ON "users"."id" = "games_users"."user_id" WHERE "games_users"."player_id" = ?
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "games_users" ON "users"."id" = "games_users"."user_id" WHERE "games_users"."player_id" = ?[0m  [["player_id", 2]]
+SQLite3::SQLException: no such column: games_users.user_id: SELECT "users".* FROM "users" INNER JOIN "games_users" ON "users"."id" = "games_users"."user_id" WHERE "games_users"."player_id" = ?
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" INNER JOIN "games_users" ON "users"."id" = "games_users"."user_id" WHERE "games_users"."player_id" = ?  [["player_id", 2]]
+SQLite3::SQLException: no such column: games_users.user_id: SELECT "users".* FROM "users" INNER JOIN "games_users" ON "users"."id" = "games_users"."user_id" WHERE "games_users"."player_id" = ?
+  [1m[36mGame Load (0.1ms)[0m  [1mSELECT  "games".* FROM "games"   ORDER BY "games"."id" DESC LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" INNER JOIN "games_users" ON "users"."id" = "games_users"."user_id" WHERE "games_users"."player_id" = ?  [["player_id", 2]]
+SQLite3::SQLException: no such column: games_users.user_id: SELECT "users".* FROM "users" INNER JOIN "games_users" ON "users"."id" = "games_users"."user_id" WHERE "games_users"."player_id" = ?
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT "users".* FROM "users" INNER JOIN "games_users" ON "users"."id" = "games_users"."user_id" WHERE "games_users"."player_id" = ?[0m  [["player_id", 2]]
+SQLite3::SQLException: no such column: games_users.user_id: SELECT "users".* FROM "users" INNER JOIN "games_users" ON "users"."id" = "games_users"."user_id" WHERE "games_users"."player_id" = ?
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" INNER JOIN "games_users" ON "users"."id" = "games_users"."user_id" WHERE "games_users"."player_id" = ?  [["player_id", 2]]
+SQLite3::SQLException: no such column: games_users.user_id: SELECT "users".* FROM "users" INNER JOIN "games_users" ON "users"."id" = "games_users"."user_id" WHERE "games_users"."player_id" = ?
+  [1m[36mGame Load (0.1ms)[0m  [1mSELECT  "games".* FROM "games"   ORDER BY "games"."id" DESC LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" INNER JOIN "games_users" ON "users"."id" = "games_users"."player_id" WHERE "games_users"."game_id" = ?  [["game_id", 2]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"   ORDER BY "users"."id" DESC LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "games_users" ("game_id", "player_id") VALUES (?, ?)  [["game_id", 2], ["player_id", 2]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.3ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateGames (20140814152110)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "host_id" integer) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140814152110"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+Migrating to CreateUsers (20140814152408)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140814152408"]]
+  [1m[35m (2.6ms)[0m  commit transaction
+Migrating to CreateGamesUsers (20140814153615)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "games_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "player_id" integer, "game_id" integer) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140814153615"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mGame Load (0.3ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"
+
+
+Started GET "/games" for 127.0.0.1 at 2014-08-14 18:51:34 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by GamesController#create as HTML
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "games" DEFAULT VALUES[0m
+  [1m[35m (1.4ms)[0m  commit transaction
+Completed 406 Not Acceptable in 25ms
+
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  app/controllers/games_controller.rb:7:in `create'
+
+
+  Rendered /Users/deyan/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/deyan/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /Users/deyan/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/deyan/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (25.2ms)
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 18:51:40 +0300
+Processing by GamesController#create as JSON
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "games" DEFAULT VALUES
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Completed 500 Internal Server Error in 26ms
+
+ActionView::MissingTemplate (Missing template games/create, application/create with {:locale=>[:en], :formats=>[:json], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/Users/deyan/Projects/personal/chesslord/backend/app/views"
+):
+  app/controllers/games_controller.rb:7:in `create'
+
+
+  Rendered /Users/deyan/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.4/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (0.4ms)
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 18:52:40 +0300
+Processing by GamesController#create as JSON
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" DEFAULT VALUES[0m
+  [1m[35m (1.4ms)[0m  commit transaction
+  Rendered games/create.json.jbuilder (1.9ms)
+Completed 200 OK in 7ms (Views: 3.8ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 18:52:41 +0300
+Processing by GamesController#create as JSON
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "games" DEFAULT VALUES
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  Rendered games/create.json.jbuilder (0.1ms)
+Completed 200 OK in 5ms (Views: 1.5ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 18:52:41 +0300
+Processing by GamesController#create as JSON
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "games" DEFAULT VALUES[0m
+  [1m[35m (1.4ms)[0m  commit transaction
+  Rendered games/create.json.jbuilder (0.1ms)
+Completed 200 OK in 5ms (Views: 1.6ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 18:52:41 +0300
+Processing by GamesController#create as JSON
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "games" DEFAULT VALUES
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  Rendered games/create.json.jbuilder (0.1ms)
+Completed 200 OK in 6ms (Views: 1.9ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 18:52:42 +0300
+Processing by GamesController#create as JSON
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "games" DEFAULT VALUES[0m
+  [1m[35m (1.4ms)[0m  commit transaction
+  Rendered games/create.json.jbuilder (0.1ms)
+Completed 200 OK in 5ms (Views: 1.5ms | ActiveRecord: 1.8ms)
+  [1m[36mGame Load (0.2ms)[0m  [1mSELECT "games".* FROM "games"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "games"
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 18:53:36 +0300
+Processing by GamesController#create as JSON
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "games" DEFAULT VALUES
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  Rendered games/create.json.jbuilder (2.7ms)
+Completed 200 OK in 8ms (Views: 4.4ms | ActiveRecord: 1.7ms)
+  [1m[36mGame Load (0.2ms)[0m  [1mSELECT "games".* FROM "games"[0m
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 18:54:23 +0300
+Processing by GamesController#create as JSON
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" DEFAULT VALUES[0m
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "games" ("host_id") VALUES (?)  [["host_id", 1]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered games/create.json.jbuilder (2.2ms)
+Completed 200 OK in 23ms (Views: 3.9ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 18:54:24 +0300
+Processing by GamesController#create as JSON
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" DEFAULT VALUES
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" ("host_id") VALUES (?)[0m  [["host_id", 2]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered games/create.json.jbuilder (0.7ms)
+Completed 200 OK in 8ms (Views: 2.2ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 18:54:25 +0300
+Processing by GamesController#create as JSON
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" DEFAULT VALUES[0m
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "games" ("host_id") VALUES (?)  [["host_id", 3]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered games/create.json.jbuilder (0.6ms)
+Completed 200 OK in 8ms (Views: 2.0ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 18:54:25 +0300
+Processing by GamesController#create as JSON
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" DEFAULT VALUES
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" ("host_id") VALUES (?)[0m  [["host_id", 4]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+  Rendered games/create.json.jbuilder (0.7ms)
+Completed 200 OK in 9ms (Views: 2.3ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 18:54:26 +0300
+Processing by GamesController#create as JSON
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" DEFAULT VALUES[0m
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "games" ("host_id") VALUES (?)  [["host_id", 5]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 5]]
+  Rendered games/create.json.jbuilder (0.9ms)
+Completed 200 OK in 8ms (Views: 2.3ms | ActiveRecord: 3.7ms)
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "games_users" WHERE "games_users"."game_id" = ?  [["game_id", 1]]
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 1]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "games_users" WHERE "games_users"."game_id" = ?  [["game_id", 2]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 2]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "games_users" WHERE "games_users"."game_id" = ?  [["game_id", 3]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 3]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "games_users" WHERE "games_users"."game_id" = ?  [["game_id", 4]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 4]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "games_users" WHERE "games_users"."game_id" = ?  [["game_id", 5]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 5]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "games_users" WHERE "games_users"."game_id" = ?  [["game_id", 6]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 6]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "games_users" WHERE "games_users"."game_id" = ?  [["game_id", 7]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 7]]
+  [1m[35m (2.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "games_users" WHERE "games_users"."game_id" = ?  [["game_id", 8]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 8]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "games_users" WHERE "games_users"."game_id" = ?  [["game_id", 9]]
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 9]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "games_users" WHERE "games_users"."game_id" = ?  [["game_id", 10]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 10]]
+  [1m[35m (2.6ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "games_users" WHERE "games_users"."game_id" = ?  [["game_id", 11]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 11]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "games_users" WHERE "games_users"."game_id" = ?  [["game_id", 12]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 12]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "games_users" WHERE "games_users"."game_id" = ?  [["game_id", 13]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 13]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "games_users" WHERE "games_users"."game_id" = ?[0m  [["game_id", 1]]
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "users" WHERE "users"."id" = ?  [["id", 1]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "games_users" WHERE "games_users"."game_id" = ?[0m  [["game_id", 2]]
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "users" WHERE "users"."id" = ?  [["id", 2]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "games_users" WHERE "games_users"."game_id" = ?[0m  [["game_id", 3]]
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "users" WHERE "users"."id" = ?  [["id", 3]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "games_users" WHERE "games_users"."game_id" = ?[0m  [["game_id", 4]]
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "users" WHERE "users"."id" = ?  [["id", 4]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "games_users" WHERE "games_users"."game_id" = ?[0m  [["game_id", 5]]
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "users" WHERE "users"."id" = ?  [["id", 5]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 18:54:40 +0300
+Processing by GamesController#create as JSON
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" DEFAULT VALUES
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" ("host_id") VALUES (?)[0m  [["host_id", 6]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 6]]
+  Rendered games/create.json.jbuilder (0.8ms)
+Completed 200 OK in 8ms (Views: 2.4ms | ActiveRecord: 3.5ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "games_users" WHERE "games_users"."game_id" = ?  [["game_id", 6]]
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 6]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mGame Load (0.1ms)[0m  SELECT "games".* FROM "games"
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "games_users" WHERE "games_users"."game_id" = ?  [["game_id", 14]]
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "games" WHERE "games"."id" = ?[0m  [["id", 14]]
+  [1m[35m (1.8ms)[0m  commit transaction
+
+
+Started GET "/games" for 127.0.0.1 at 2014-08-14 18:55:51 +0300
+Processing by GamesController#create as HTML
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" DEFAULT VALUES[0m
+  [1m[35m (1.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "games" ("host_id") VALUES (?)  [["host_id", 7]]
+  [1m[36m (2.8ms)[0m  [1mcommit transaction[0m
+Completed 406 Not Acceptable in 18ms
+
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  app/controllers/games_controller.rb:7:in `create'
+
+
+  Rendered /Users/deyan/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /Users/deyan/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /Users/deyan/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/deyan/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.7ms)
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 18:55:55 +0300
+Processing by GamesController#create as JSON
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" DEFAULT VALUES[0m
+  [1m[35m (1.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "games" ("host_id") VALUES (?)  [["host_id", 8]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 8]]
+  Rendered games/create.json.jbuilder (1.4ms)
+Completed 200 OK in 9ms (Views: 3.0ms | ActiveRecord: 3.8ms)
+  [1m[36m (14.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (41.5ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateGames (20140814152110)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "board_size" integer, "player_count" integer, "host_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140814152110"]]
+  [1m[35m (2.6ms)[0m  commit transaction
+Migrating to CreateUsers (20140814152408)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140814152408"]]
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to CreateGamesUsers (20140814153615)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "games_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "player_id" integer, "game_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140814153615"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 18:59:11 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by GamesController#create as JSON
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2014-08-14 15:59:11.350024"], ["updated_at", "2014-08-14 15:59:11.350024"]]
+  [1m[35m (1.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "games" ("created_at", "host_id", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-08-14 15:59:11.362579"], ["host_id", 1], ["updated_at", "2014-08-14 15:59:11.362579"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered games/create.json.jbuilder (1.8ms)
+Completed 200 OK in 25ms (Views: 3.5ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 18:59:39 +0300
+Processing by GamesController#create as JSON
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", "2014-08-14 15:59:39.447262"], ["updated_at", "2014-08-14 15:59:39.447262"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" ("created_at", "host_id", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-08-14 15:59:39.450718"], ["host_id", 2], ["updated_at", "2014-08-14 15:59:39.450718"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered games/create.json.jbuilder (0.9ms)
+Completed 200 OK in 9ms (Views: 2.3ms | ActiveRecord: 3.7ms)
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.5ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateGames (20140814152110)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "board_size" integer DEFAULT 16 NOT NULL, "player_count" integer DEFAULT 2 NOT NULL, "host_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140814152110"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+Migrating to CreateUsers (20140814152408)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140814152408"]]
+  [1m[35m (1.7ms)[0m  commit transaction
+Migrating to CreateGamesUsers (20140814153615)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "games_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "player_id" integer, "game_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140814153615"]]
+  [1m[35m (2.7ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 19:00:38 +0300
+Processing by GamesController#create as JSON
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2014-08-14 16:00:39.010226"], ["updated_at", "2014-08-14 16:00:39.010226"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "games" ("created_at", "host_id", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-08-14 16:00:39.022380"], ["host_id", 1], ["updated_at", "2014-08-14 16:00:39.022380"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered games/create.json.jbuilder (1.8ms)
+Completed 200 OK in 24ms (Views: 3.6ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 19:01:24 +0300
+Processing by GamesController#create as JSON
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", "2014-08-14 16:01:24.199093"], ["updated_at", "2014-08-14 16:01:24.199093"]]
+  [1m[36m (2.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" ("created_at", "host_id", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-08-14 16:01:24.203768"], ["host_id", 2], ["updated_at", "2014-08-14 16:01:24.203768"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  Rendered games/create.json.jbuilder (1.0ms)
+Completed 500 Internal Server Error in 11ms
+
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    1: json.id           @game.id
+    2: json.board_size   @board_size.id
+    3: json.player_count @game.player_count
+    4: json.host_id      @game.host.id
+  app/views/games/create.json.jbuilder:2:in `_app_views_games_create_json_jbuilder__2525367215548641621_70201952258260'
+  app/controllers/games_controller.rb:7:in `create'
+
+
+  Rendered /Users/deyan/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Users/deyan/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/deyan/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (11.7ms)
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 19:01:33 +0300
+Processing by GamesController#create as JSON
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", "2014-08-14 16:01:33.074313"], ["updated_at", "2014-08-14 16:01:33.074313"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" ("created_at", "host_id", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-08-14 16:01:33.077683"], ["host_id", 3], ["updated_at", "2014-08-14 16:01:33.077683"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  Rendered games/create.json.jbuilder (0.9ms)
+Completed 500 Internal Server Error in 9ms
+
+ActionView::Template::Error (undefined method `id' for 16:Fixnum):
+    1: json.id           @game.id
+    2: json.board_size   @game.board_size.id
+    3: json.player_count @game.player_count
+    4: json.host_id      @game.host.id
+  app/views/games/create.json.jbuilder:2:in `_app_views_games_create_json_jbuilder__2525367215548641621_70201989564660'
+  app/controllers/games_controller.rb:7:in `create'
+
+
+  Rendered /Users/deyan/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /Users/deyan/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/deyan/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.1.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (10.6ms)
+
+
+Started GET "/games.json" for 127.0.0.1 at 2014-08-14 19:01:41 +0300
+Processing by GamesController#create as JSON
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", "2014-08-14 16:01:41.265584"], ["updated_at", "2014-08-14 16:01:41.265584"]]
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" ("created_at", "host_id", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-08-14 16:01:41.269010"], ["host_id", 4], ["updated_at", "2014-08-14 16:01:41.269010"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+  Rendered games/create.json.jbuilder (1.0ms)
+Completed 200 OK in 9ms (Views: 2.4ms | ActiveRecord: 3.7ms)
