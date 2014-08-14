@@ -1,8 +1,9 @@
 class GamesController < ApplicationController
 
+  # POST /games
   def create
     @user = User.create # TODO: This should be replaced with logged in user
-    @game = @user.hosted_games.build
+    @game = @user.hosted_games.build(game_params)
 
     respond_to do |format|
       if @game.save
@@ -12,6 +13,11 @@ class GamesController < ApplicationController
       end
     end
 
+  end
+
+  # PATCH /games/start
+  def start
+    # Spawn all the kings
   end
 
   private
