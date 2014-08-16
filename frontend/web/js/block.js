@@ -23,7 +23,12 @@ Block.prototype.draw = function(){
 
 Block.prototype.addPiece = function(piece){
   var self = this;
+
   if(self.piece){
-    console.error('There is a piece on this location.');
+    return false;
+  } else {
+    self.piece = piece;
+    return true;
   }
+
 }

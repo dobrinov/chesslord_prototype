@@ -63,9 +63,15 @@ Board.prototype.addPlayer = function(player){
 }
 
 Board.prototype.placePiece = function(piece, row, col){
-  piece.board = this;
-  piece.row   = row;
-  piece.col   = col;
+  if(this.field[row][col].addPiece(piece)){
+    piece.board = this;
+    piece.row   = row;
+    piece.col   = col;
 
-  this.field[row][col].piece = piece;
+    this.pieces.push(piece);
+
+    return true;
+  } else {
+    return false;
+  }
 }

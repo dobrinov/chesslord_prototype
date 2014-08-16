@@ -11,13 +11,14 @@ Player.prototype.placeKing = function(){
     console.error('This player has not joined a board.'); return;
   }
 
-  // Get coordinates from backend;
-  // STUB:
+  // Get coordinates from backend (stubbed)
   var row = Math.floor((Math.random() * self.board.rows));
   var col = Math.floor((Math.random() * self.board.cols));
   var piece = this.spawnPiece(King);
 
-  this.board.placePiece(piece,row,col);
+  if(!self.board.placePiece(piece,row,col)){
+    self.placeKing();
+  }
 }
 
 Player.prototype.spawnPiece = function(pieceType){
