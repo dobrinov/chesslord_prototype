@@ -26,18 +26,38 @@ body {
   font-weight: normal;
 }
 
+.board__block_possible-move {
+  background-color: green;
+}
+
 .board__block_light {
   background-color: #00AA72;
-  color: black;
 }
 
 .board__block_dark {
   background-color: #218359;
-  color: white;
 }
 
 .piece {
   display: block;
   width: 100%;
   height: 100%;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.piece_white {
+  color: white;
+}
+
+.piece_black {
+  color: black;
+}
+
+.piece_red {
+  color: red;
+}
+
+.piece_blue {
+  color: blue;
 }

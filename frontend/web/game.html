@@ -5,64 +5,43 @@
     <title>Chesslord: A strategy chess game</title>
     <link href="css/app.css" media="all" rel="stylesheet">
     <script src="js/vendor/jquery-2.1.1.min.js"></script>
+    <script src="js/vendor/jquery-ui.min.js"></script>
+
+    <script src="js/piece.js"></script>
+    <script src="js/block.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/game.js"></script>
   </head>
 
   <body>
-    <div class="board"></div>
+    <div id="board"></div>
   </body>
 
   <script>
     $(document).ready(function(){
-      var rows = 16;
-      var cols = 16;
 
-      var pieces = [
-        '&#9818;',
-        '&#9819;',
-        '&#9820;',
-        '&#9821;',
-        '&#9822;',
-        '&#9823;'
+      // Create board
+      window.board = new Board({
+        rows: 12,
+        cols: 12,
+        size: 600
+      });
+
+      // Create players
+      window.players = [
+        new Player({name:'A'}),
+        new Player({name:'B'}),
+        new Player({name:'C'}),
+        new Player({name:'D'})
       ];
 
-      var $board = $('.board');
-      var board = new Array();
-
-      // Generate board array;
-      for(var i=0; i<rows; i++){
-        var row = new Array();
-        board.push(row);
-
-        for(var j=0; j<rows; j++){
-          var color;
-
-          if(i%2==0){
-            color = j%2==0 ? 'dark' : 'light';
-          } else {
-            color = j%2==0 ? 'light' : 'dark';
-          }
-
-          row.push({
-            'color': color
-          });
-        }
+      // Join players to the board
+      for(var i=0; i<players.length; i++){
+        board.addPlayer(players[i]);
       }
 
-      // Draw field;
-      for(var i=0; i<rows; i++){
-        for(var j=0; j<rows; j++){
-          var $block = $(document.createElement('div'));
-          $block.addClass('board__block board__block_' + board[i][j].color);
-
-          var $piece = $(document.createElement('span'));
-          $piece.addClass('piece');
-          // $piece.html(pieces[Math.floor(Math.random()*pieces.length)]);
-
-          $block.append($piece);
-          $board.append($block);
-        }
-      }
-
+      $('#board').html(board.draw());
     });
   </script>
 </html>
