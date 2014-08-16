@@ -6,7 +6,7 @@ function Board(options){
   this.players = [];
   this.pieces  = [];
 
-  this.teams = ['#ffffff', '#000000'];
+  this.teams = ['white', 'black', 'red', 'blue'];
 
   this.init();
 }
@@ -31,15 +31,19 @@ Board.prototype.init = function(){
 Board.prototype.draw = function(){
   var self = this;
 
-  var html = $(document.createElement('div')).addClass('board').css('width',self.width);
+  self.html = $(document.createElement('div')).addClass('board').css('width',self.width);
 
   for(var i=0; i<self.rows; i++){
     for(var j=0; j<self.cols; j++){
-      html.append(self.field[i][j].draw());
+      self.html.append(self.field[i][j].draw());
     }
   }
 
-  return html;
+  return self.html;
+}
+
+Board.prototype.redraw = function(){
+  return this.draw;
 }
 
 Board.prototype.colorForPosition = function(row,col){
@@ -53,6 +57,15 @@ Board.prototype.colorForPosition = function(row,col){
 }
 
 Board.prototype.addPlayer = function(player){
-  this.players.push(player);
+  player.team = this.teams[this.players.length];
   player.board = this;
+  this.players.push(player);
+}
+
+Board.prototype.placePiece = function(piece, row, col){
+  piece.board = this;
+  piece.row   = row;
+  piece.col   = col;
+
+  this.field[row][col].piece = piece;
 }

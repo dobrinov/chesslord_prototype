@@ -2,14 +2,19 @@ function Piece(){
 }
 
 Piece.prototype.draw =  function(){
-  $(document.createElement('span')).addClass('piece');
+  this.html = $(document.createElement('span'))
+                .addClass('piece')
+                .addClass('piece_' + this.player.team)
+                .html(this.sign);
+
+  return this.html;
 }
 
 // KING
 
 function King(){
   Piece.call(this);
-  $(this.html).html('&#9818;');
+  this.sign = '&#9818;';
 }
 
 King.prototype = Object.create(Piece.prototype);
@@ -19,7 +24,7 @@ King.prototype.constructor = King;
 
 function Queen(){
   Piece.call(this);
-  $(this.html).html('&#9819;');
+  this.sign = '&#9819;';
 }
 
 Queen.prototype = Object.create(Piece.prototype);
@@ -29,7 +34,7 @@ Queen.prototype.constructor = Queen;
 
 function Rook(){
   Piece.call(this);
-  $(this.html).html('&#9820;');
+  this.sign = '&#9820;';
 }
 
 Rook.prototype = Object.create(Piece.prototype);
@@ -39,7 +44,7 @@ Rook.prototype.constructor = Rook;
 
 function Bishop(){
   Piece.call(this);
-  $(this.html).html('&#9821;');
+  this.sign = '&#9821;';
 }
 
 Bishop.prototype = Object.create(Piece.prototype);
@@ -49,7 +54,7 @@ Bishop.prototype.constructor = Bishop;
 
 function Knight(){
   Piece.call(this);
-  $(this.html).html('&#9822;');
+  this.sign = '&#9822;';
 }
 
 Knight.prototype = Object.create(Piece.prototype);
@@ -59,7 +64,7 @@ Knight.prototype.constructor = Knight;
 
 function Pawn(){
   Piece.call(this);
-  $(this.html).html('&#9823;');
+  this.sign = '&#9823;';
 }
 
 Pawn.prototype = Object.create(Piece.prototype);
