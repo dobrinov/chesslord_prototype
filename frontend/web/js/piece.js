@@ -1,4 +1,5 @@
 function Piece(){
+  this.possibleMoves = [];
 }
 
 Piece.prototype.draw = function(){
@@ -32,11 +33,29 @@ Piece.prototype.makeDraggable = function(){
   });
 }
 
+Piece.prototype.possibleLocations = function(){
+  var possibleLocations = [];
+
+  for(var i=0; i<this.possibleMoves.length; i++){
+    for(var j=0; j<this.possibleMoves[i].possibleLocations.length; j++){
+      possibleLocations.push(this.possibleMoves[i].possibleLocations[j]);
+    }
+  }
+
+  return possibleLocations;
+}
+
 // KING
 
 function King(){
   Piece.call(this);
   this.sign = '&#9818;';
+
+  this.possibleMoves = [
+    new HorizontalMove(1),
+    new VerticalMove(1),
+    new DiagonalMove(1)
+  ];
 }
 
 King.prototype = Object.create(Piece.prototype);
@@ -47,6 +66,12 @@ King.prototype.constructor = King;
 function Queen(){
   Piece.call(this);
   this.sign = '&#9819;';
+
+  this.possibleMoves = [
+    new HorizontalMove(8),
+    new VerticalMove(8),
+    new DiagonalMove(8)
+  ];
 }
 
 Queen.prototype = Object.create(Piece.prototype);
@@ -57,6 +82,11 @@ Queen.prototype.constructor = Queen;
 function Rook(){
   Piece.call(this);
   this.sign = '&#9820;';
+
+  this.possibleMoves = [
+    new HorizontalMove(8),
+    new VerticalMove(8)
+  ];
 }
 
 Rook.prototype = Object.create(Piece.prototype);
@@ -67,6 +97,10 @@ Rook.prototype.constructor = Rook;
 function Bishop(){
   Piece.call(this);
   this.sign = '&#9821;';
+
+  this.possibleMoves = [
+    new DiagonalMove(8)
+  ];
 }
 
 Bishop.prototype = Object.create(Piece.prototype);
@@ -77,6 +111,10 @@ Bishop.prototype.constructor = Bishop;
 function Knight(){
   Piece.call(this);
   this.sign = '&#9822;';
+
+  this.possibleMoves = [
+    new KnightMove()
+  ];
 }
 
 Knight.prototype = Object.create(Piece.prototype);
@@ -87,6 +125,11 @@ Knight.prototype.constructor = Knight;
 function Pawn(){
   Piece.call(this);
   this.sign = '&#9823;';
+
+  this.possibleMoves = [
+    new HorizontalMove(1),
+    new VerticalMove(1)
+  ];
 }
 
 Pawn.prototype = Object.create(Piece.prototype);
