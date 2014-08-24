@@ -1,13 +1,35 @@
 function Piece(){
 }
 
-Piece.prototype.draw =  function(){
+Piece.prototype.draw = function(){
   this.html = $(document.createElement('span'))
                 .addClass('piece')
                 .addClass('piece_' + this.player.team)
                 .html(this.sign);
 
+  this.makeDraggable();
+
   return this.html;
+}
+
+Piece.prototype.makeDraggable = function(){
+  this.html.draggable({
+    opacity: 0.5,
+    helper: "clone",
+    start: function(e) {
+    },
+    drag: function(e) {
+    },
+    stop: function(e) {
+
+      setTimeout(function(){
+        $(document.elementFromPoint(e.clientX,e.clientY))
+          .closest('.board__block')
+          .html(e.target);
+      }, 1);
+
+    }
+  });
 }
 
 // KING
