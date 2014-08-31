@@ -26,16 +26,20 @@ body {
   font-weight: normal;
 }
 
-.board__block_possible-move {
-  background-color: green;
-}
-
 .board__block_light {
   background-color: #00AA72;
 }
 
+.board__block_light.board__block_possible-move {
+  background-color: #AEE481;
+}
+
 .board__block_dark {
   background-color: #218359;
+}
+
+.board__block_dark.board__block_possible-move {
+  background-color: #81C142;
 }
 
 .piece {

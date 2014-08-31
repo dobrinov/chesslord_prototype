@@ -14,20 +14,32 @@ Piece.prototype.draw = function(){
 }
 
 Piece.prototype.makeDraggable = function(){
-  this.html.draggable({
+  var self = this;
+
+  self.html.draggable({
     opacity: 0.5,
     helper: "clone",
     start: function(e) {
+      self.board.markPossibleBlocksFor(self);
     },
     drag: function(e) {
     },
     stop: function(e) {
+      self.board.unmarkPossibleBlocks(self);
+      self.block.removePiece();
 
-      setTimeout(function(){
-        $(document.elementFromPoint(e.clientX,e.clientY))
-          .closest('.board__block')
-          .html(e.target);
-      }, 1);
+      var destinationBlockElement = $(document.elementFromPoint(e.clientX,e.clientY)).closest('.board__block');
+      var destinationBlock = self.board.field[destinationBlockElement.data('row')][destinationBlockElement.data('col')];
+
+      destinationBlock.placePiece(self);
+
+      // setTimeout(function(){
+      //   var block_html = $(document.elementFromPoint(e.clientX,e.clientY)).closest('.board__block');
+      //   var block = self.board.field[block_html.data('row')][block_html.data('col')];
+
+      //   self.block = block;
+      //   self.block.html.html(self.html);
+      // }, 1);
 
     }
   });

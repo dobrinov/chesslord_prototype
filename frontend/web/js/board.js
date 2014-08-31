@@ -42,8 +42,34 @@ Board.prototype.draw = function(){
   return self.html;
 }
 
-Board.prototype.redraw = function(){
-  return this.draw;
+Board.prototype.markPossibleBlocksFor = function(piece){
+  var self = this;
+  var possibleLocations = piece.possibleLocations();
+
+  for(var i=0; i<possibleLocations.length; i++){
+    var row = piece.block.row + possibleLocations[i].y
+    var col = piece.block.col + possibleLocations[i].x
+
+    if((row >= 0 && col >= 0) && (row < self.rows && col < self.cols)){
+      self.field[row][col].markAsPossibleMove(); // mark block object as possible move;
+    }
+
+  }
+}
+
+Board.prototype.unmarkPossibleBlocks = function(piece){
+  var self = this;
+  var possibleLocations = piece.possibleLocations();
+
+  for(var i=0; i<possibleLocations.length; i++){
+    var row = piece.block.row + possibleLocations[i].y
+    var col = piece.block.col + possibleLocations[i].x
+
+    if((row >= 0 && col >= 0) && (row < self.rows && col < self.cols)){
+      self.field[row][col].unmarkAsPossibleMove(); // unmark block object as possible move;
+    }
+    
+  }
 }
 
 Board.prototype.colorForPosition = function(row,col){
@@ -65,8 +91,7 @@ Board.prototype.addPlayer = function(player){
 Board.prototype.placePiece = function(piece, row, col){
   if(this.field[row][col].addPiece(piece)){
     piece.board = this;
-    piece.row   = row;
-    piece.col   = col;
+    piece.block = board.field[row][col];
 
     this.pieces.push(piece);
 
