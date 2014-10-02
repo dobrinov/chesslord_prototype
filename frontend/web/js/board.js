@@ -8,38 +8,37 @@ function Board(options){
 
   this.teams = ['white', 'black', 'red', 'blue'];
 
-  this.init();
-}
+  this.field = new Array();
 
-Board.prototype.init = function(){
-  var self = this;
-
-  self.field = new Array();
-
-  for(var i=0; i<self.rows; i++){
+  // Add blocks to the board;
+  for(var i=0; i<this.rows; i++){
     var row = new Array();
 
-    for(var j=0; j<self.cols; j++){
-      var color = self.colorForPosition(i,j);
-      row.push(new Block(i,j,color,self));
+    for(var j=0; j<this.cols; j++){
+      var color = this.colorForPosition(i,j);
+      row.push(new Block(i,j,color,this));
     }
 
-    self.field.push(row);
+    this.field.push(row);
   }
+
+  // Draw the board;
+  this.draw();
 }
 
 Board.prototype.draw = function(){
-  var self = this;
+  this.element =  $(document.createElement('div'))
+                    .addClass('board')
+                    .css('width',this.width);
 
-  self.html = $(document.createElement('div')).addClass('board').css('width',self.width);
-
-  for(var i=0; i<self.rows; i++){
-    for(var j=0; j<self.cols; j++){
-      self.html.append(self.field[i][j].draw());
+  for(var i=0; i<this.rows; i++){
+    for(var j=0; j<this.cols; j++){
+      this.element.append(this.field[i][j].element);
     }
   }
+}
 
-  return self.html;
+Board.prototype.movePiece = function(piece, from, to){
 }
 
 Board.prototype.markPossibleBlocksFor = function(piece){
@@ -88,15 +87,13 @@ Board.prototype.addPlayer = function(player){
   this.players.push(player);
 }
 
+Board.prototype.isBlockFree = function(row,col){
+  return this.field[row][col].piece == undefined
+}
+
 Board.prototype.placePiece = function(piece, row, col){
-  if(this.field[row][col].addPiece(piece)){
-    piece.board = this;
-    piece.block = board.field[row][col];
+  this.field[row][col].placePiece(piece);
+  piece.board = this;
 
-    this.pieces.push(piece);
-
-    return true;
-  } else {
-    return false;
-  }
+  this.pieces.push(piece);
 }

@@ -1,22 +1,20 @@
-function Piece(){
-  this.possibleMoves = [];
+function Piece(player){
+  this.player = player;
+  this.draw();
+  this.makeDraggable();
 }
 
 Piece.prototype.draw = function(){
-  this.html = $(document.createElement('span'))
-                .addClass('piece')
-                .addClass('piece_' + this.player.team)
-                .html(this.sign);
-
-  this.makeDraggable();
-
-  return this.html;
+  this.element =  $(document.createElement('span'))
+                    .addClass('piece')
+                    .addClass('piece_' + this.player.team)
+                    .html(this.sign);
 }
 
 Piece.prototype.makeDraggable = function(){
   var self = this;
 
-  self.html.draggable({
+  self.element.draggable({
     opacity: 0.5,
     helper: "clone",
     start: function(e) {
@@ -24,7 +22,7 @@ Piece.prototype.makeDraggable = function(){
     },
     drag: function(e) {
     },
-    stop: function(e) {
+    stop: function(e, ui) {
       self.board.unmarkPossibleBlocks(self);
       self.block.removePiece();
 
@@ -33,14 +31,9 @@ Piece.prototype.makeDraggable = function(){
 
       destinationBlock.placePiece(self);
 
-      // setTimeout(function(){
-      //   var block_html = $(document.elementFromPoint(e.clientX,e.clientY)).closest('.board__block');
-      //   var block = self.board.field[block_html.data('row')][block_html.data('col')];
-
-      //   self.block = block;
-      //   self.block.html.html(self.html);
-      // }, 1);
-
+      setTimeout(function(){
+        self.makeDraggable();
+      },1);
     }
   });
 }
@@ -59,8 +52,7 @@ Piece.prototype.possibleLocations = function(){
 
 // KING
 
-function King(){
-  Piece.call(this);
+function King(player){
   this.sign = '&#9818;';
 
   this.possibleMoves = [
@@ -68,6 +60,8 @@ function King(){
     new VerticalMove(1),
     new DiagonalMove(1)
   ];
+
+  Piece.call(this, player);
 }
 
 King.prototype = Object.create(Piece.prototype);
@@ -75,15 +69,16 @@ King.prototype.constructor = King;
 
 // QUEEN
 
-function Queen(){
-  Piece.call(this);
+function Queen(player){
   this.sign = '&#9819;';
 
   this.possibleMoves = [
-    new HorizontalMove(8),
-    new VerticalMove(8),
-    new DiagonalMove(8)
+    new HorizontalMove(4),
+    new VerticalMove(4),
+    new DiagonalMove(4)
   ];
+
+  Piece.call(this, player);
 }
 
 Queen.prototype = Object.create(Piece.prototype);
@@ -91,14 +86,15 @@ Queen.prototype.constructor = Queen;
 
 // ROOK
 
-function Rook(){
-  Piece.call(this);
+function Rook(player){
   this.sign = '&#9820;';
 
   this.possibleMoves = [
-    new HorizontalMove(8),
-    new VerticalMove(8)
+    new HorizontalMove(4),
+    new VerticalMove(4)
   ];
+
+  Piece.call(this, player);
 }
 
 Rook.prototype = Object.create(Piece.prototype);
@@ -106,13 +102,14 @@ Rook.prototype.constructor = Rook;
 
 // BISHOP
 
-function Bishop(){
-  Piece.call(this);
+function Bishop(player){
   this.sign = '&#9821;';
 
   this.possibleMoves = [
-    new DiagonalMove(8)
+    new DiagonalMove(4)
   ];
+
+  Piece.call(this, player);
 }
 
 Bishop.prototype = Object.create(Piece.prototype);
@@ -120,13 +117,14 @@ Bishop.prototype.constructor = Bishop;
 
 // KNIGHT
 
-function Knight(){
-  Piece.call(this);
+function Knight(player){
   this.sign = '&#9822;';
 
   this.possibleMoves = [
     new KnightMove()
   ];
+
+  Piece.call(this, player);
 }
 
 Knight.prototype = Object.create(Piece.prototype);
@@ -134,14 +132,15 @@ Knight.prototype.constructor = Knight;
 
 // PAWN
 
-function Pawn(){
-  Piece.call(this);
+function Pawn(player){
   this.sign = '&#9823;';
 
   this.possibleMoves = [
     new HorizontalMove(1),
     new VerticalMove(1)
   ];
+
+  Piece.call(this, player);
 }
 
 Pawn.prototype = Object.create(Piece.prototype);

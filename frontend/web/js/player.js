@@ -14,17 +14,18 @@ Player.prototype.placeKing = function(){
   // Get coordinates from backend (stubbed)
   var row = Math.floor((Math.random() * self.board.rows));
   var col = Math.floor((Math.random() * self.board.cols));
-  var piece = this.spawnPiece(King);
+  var piece = this.spawnPiece(Queen);
 
-  if(!self.board.placePiece(piece,row,col)){
+  if(self.board.isBlockFree(row,col)){
+    self.board.placePiece(piece,row,col);
+  } else {
     self.placeKing();
   }
 }
 
 Player.prototype.spawnPiece = function(pieceType){
-  var piece = new pieceType();
+  var piece = new pieceType(this);
 
-  piece.player = this;
   this.pieces.push(piece);
 
   return piece;
