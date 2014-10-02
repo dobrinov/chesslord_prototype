@@ -27,8 +27,8 @@ Block.prototype.placePiece = function(piece){
 }
 
 Block.prototype.removePiece = function(){
-  this.piece.block = undefined;
-  this.piece = undefined;
+  this.piece.block = null;
+  this.piece = null;
 
   this.element.html('');
 }

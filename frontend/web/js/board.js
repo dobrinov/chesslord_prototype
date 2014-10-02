@@ -43,32 +43,33 @@ Board.prototype.movePiece = function(piece, from, to){
 
 Board.prototype.markPossibleBlocksFor = function(piece){
   var self = this;
-  var possibleLocations = piece.possibleLocations();
+  var possibleMoves = piece.possibleMoves;
 
-  for(var i=0; i<possibleLocations.length; i++){
-    var row = piece.block.row + possibleLocations[i].y
-    var col = piece.block.col + possibleLocations[i].x
+  for(var i=0; i<possibleMoves.length; i++){
+    var possibleLocations = possibleMoves[i].possibleLocations;
 
-    if((row >= 0 && col >= 0) && (row < self.rows && col < self.cols)){
-      self.field[row][col].markAsPossibleMove(); // mark block object as possible move;
+    for(var j=0; j<possibleLocations.length; j++){
+      var row = piece.block.row + possibleLocations[j].y;
+      var col = piece.block.col + possibleLocations[j].x;
+
+      // If location out of the board;
+      if(row < 0 || col < 0 || row >= self.rows || col >= self.cols){
+        break; // ignore successor move locations;
+      }
+
+      self.field[row][col].markAsPossibleMove();
+
+      // If another piece in way
+      if(self.field[row][col].piece !== null){
+        break; // ignore successor move locations;
+      }
+
     }
-
   }
 }
 
 Board.prototype.unmarkPossibleBlocks = function(piece){
-  var self = this;
-  var possibleLocations = piece.possibleLocations();
-
-  for(var i=0; i<possibleLocations.length; i++){
-    var row = piece.block.row + possibleLocations[i].y
-    var col = piece.block.col + possibleLocations[i].x
-
-    if((row >= 0 && col >= 0) && (row < self.rows && col < self.cols)){
-      self.field[row][col].unmarkAsPossibleMove(); // unmark block object as possible move;
-    }
-    
-  }
+  this.element.find('.board__block').removeClass('board__block_possible-move');
 }
 
 Board.prototype.colorForPosition = function(row,col){

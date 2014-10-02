@@ -56,9 +56,14 @@ function King(player){
   this.sign = '&#9818;';
 
   this.possibleMoves = [
-    new HorizontalMove(1),
-    new VerticalMove(1),
-    new DiagonalMove(1)
+    new HorizontalMove(1, 'w'),
+    new HorizontalMove(1, 'e'),
+    new VerticalMove(1, 'n'),
+    new VerticalMove(1, 's'),
+    new DiagonalMove(1, 'ne'),
+    new DiagonalMove(1, 'nw'),
+    new DiagonalMove(1, 'sw'),
+    new DiagonalMove(1, 'se')
   ];
 
   Piece.call(this, player);
@@ -73,9 +78,14 @@ function Queen(player){
   this.sign = '&#9819;';
 
   this.possibleMoves = [
-    new HorizontalMove(4),
-    new VerticalMove(4),
-    new DiagonalMove(4)
+    new HorizontalMove(4, 'w'),
+    new HorizontalMove(4, 'e'),
+    new VerticalMove(4, 'n'),
+    new VerticalMove(4, 's'),
+    new DiagonalMove(4, 'ne'),
+    new DiagonalMove(4, 'nw'),
+    new DiagonalMove(4, 'sw'),
+    new DiagonalMove(4, 'se')
   ];
 
   Piece.call(this, player);
@@ -90,8 +100,10 @@ function Rook(player){
   this.sign = '&#9820;';
 
   this.possibleMoves = [
-    new HorizontalMove(4),
-    new VerticalMove(4)
+    new HorizontalMove(4, 'w'),
+    new HorizontalMove(4, 'e'),
+    new VerticalMove(4, 'n'),
+    new VerticalMove(4, 's')
   ];
 
   Piece.call(this, player);
@@ -106,7 +118,10 @@ function Bishop(player){
   this.sign = '&#9821;';
 
   this.possibleMoves = [
-    new DiagonalMove(4)
+    new DiagonalMove(4, 'ne'),
+    new DiagonalMove(4, 'nw'),
+    new DiagonalMove(4, 'sw'),
+    new DiagonalMove(4, 'se')
   ];
 
   Piece.call(this, player);
@@ -136,8 +151,10 @@ function Pawn(player){
   this.sign = '&#9823;';
 
   this.possibleMoves = [
-    new HorizontalMove(1),
-    new VerticalMove(1)
+    new HorizontalMove(1, 'w'),
+    new HorizontalMove(1, 'e'),
+    new VerticalMove(1, 'n'),
+    new VerticalMove(1, 's')
   ];
 
   Piece.call(this, player);
